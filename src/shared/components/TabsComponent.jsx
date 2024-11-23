@@ -1,37 +1,54 @@
 import React, { useState } from 'react';
-import styles from 'shared/styles/Tabs.module.css';
+import { Tabs, Tab, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
+/**
+ * Componente genérico para mostrar tabs.
+ *
+ * @param {Array} tabs - Arreglo de objetos que definen los tabs, cada objeto debe tener una propiedad label y content.
+ */
 const TabsComponent = ({ tabs }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0].label);
+  const [activeTab, setActiveTab] = useState(0);
 
-  const handleTabClick = (label) => {
-    setActiveTab(label);
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
   };
 
   return (
-    <div>
-      <div className={styles.tabs}>
-        {tabs.map((tab) => (
-          <button
+    <Box>
+      <Tabs
+        value={activeTab}
+        onChange={handleTabChange}
+        aria-label="tabs"
+      >
+        {tabs.map((tab, index) => (
+          <Tab
             key={tab.label}
-            className={`${styles.tabButton} ${tab.label === activeTab ? styles.active : ''}`}
-            onClick={() => handleTabClick(tab.label)}
-          >
-            {tab.label}
-          </button>
+            label={tab.label}
+            id={`tab-${index}`}
+            sx={{
+              '&:hover': {
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+              },
+            }}
+          />
         ))}
-      </div>
-      <div className={styles.tabContent}>
-        {tabs.map((tab) => {
-          if (tab.label !== activeTab) return null;
-          return (
-            <div key={tab.label} className={styles.tabPanel}>
+      </Tabs>
+      {tabs.map((tab, index) => (
+        <div
+          role="tabpanel"
+          hidden={activeTab !== index}
+          id={`tabpanel-${index}`}
+          key={tab.label}
+        >
+          {activeTab === index && (
+            <Box sx={{ p: 0, mt: 2 }}>
               {tab.content}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+            </Box>
+          )}
+        </div>
+      ))}
+    </Box>
   );
 };
 

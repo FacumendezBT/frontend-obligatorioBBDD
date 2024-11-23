@@ -5,7 +5,7 @@ const useAuthService = () => {
 
   const login = async (email, password) => {
     const response = await doRequest(
-      "users/login",
+      "usuarios/login",
       "POST",
       { correo: email, contrasena: password },
       false

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import styles from '../styles/Users.module.css';
+import { Container, Typography, LinearProgress, Box } from '@mui/material';
 import TabsComponent from 'shared/components/TabsComponent';
 import InstructoresTable from '../components/InstructoresTable';
 import AlumnosTable from '../components/AlumnosTable';
@@ -20,7 +20,14 @@ const UsersPage = () => {
   }, []);
 
   if (loadingInstructores || loadingAlumnos || loadingUsuarios) {
-    return <p>Cargando datos...</p>;
+    return (
+      <Container sx={{ textAlign: 'center', marginTop: 4 }}>
+        <LinearProgress />
+        <Typography variant="h6" sx={{ marginTop: 2 }}>
+          Cargando datos...
+        </Typography>
+      </Container>
+    );
   }
 
   const tabs = [
@@ -39,10 +46,12 @@ const UsersPage = () => {
   ];
 
   return (
-    <div className={styles.usersPage}>
-      <h1>Gestión de Usuarios</h1>
+    <Container maxWidth="xl" sx={{ marginTop: 4, height: '100%' }}>
+      <Typography variant="h4" gutterBottom>
+        Gestión de Usuarios
+      </Typography>
       <TabsComponent tabs={tabs} />
-    </div>
+    </Container>
   );
 };
 

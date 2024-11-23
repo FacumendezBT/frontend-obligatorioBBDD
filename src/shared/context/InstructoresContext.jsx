@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import InstructoresService from '../services/InstructoresService';
 import { toast } from 'react-toastify';
 
@@ -50,10 +50,6 @@ export const InstructoresProvider = ({ children }) => {
       toast.error("Error al eliminar el instructor");
     }
   };
-
-  useEffect(() => {
-    fetchInstructores();
-  }, []);
 
   return (
     <InstructoresContext.Provider 

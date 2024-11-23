@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import UsuariosService from '../services/UsuariosService';
 import { toast } from 'react-toastify';
 
@@ -61,10 +61,6 @@ export const UsuariosProvider = ({ children }) => {
       throw error;
     }
   };
-
-  useEffect(() => {
-    fetchUsuarios();
-  }, []);
 
   return (
     <UsuariosContext.Provider 

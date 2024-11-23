@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 import AlumnosService from '../services/AlumnosService';
 import { toast } from 'react-toastify';
 
@@ -60,10 +60,6 @@ export const AlumnosProvider = ({ children }) => {
       return [];
     }
   };
-
-  useEffect(() => {
-    fetchAlumnos();
-  }, []);
 
   return (
     <AlumnosContext.Provider 
