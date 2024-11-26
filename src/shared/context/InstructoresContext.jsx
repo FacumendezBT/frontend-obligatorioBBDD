@@ -6,8 +6,9 @@ export const InstructoresContext = createContext();
 
 export const InstructoresProvider = ({ children }) => {
   const [instructores, setInstructores] = useState([]);
+  const [instructor, setInstructor] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { getInstructores, createInstructor, updateInstructor, deleteInstructor } = InstructoresService();
+  const { getInstructores, getInstructorById, createInstructor, updateInstructor, deleteInstructor } = InstructoresService();
 
   const fetchInstructores = async () => {
     setLoading(true);
@@ -18,6 +19,15 @@ export const InstructoresProvider = ({ children }) => {
       toast.error("Error al cargar los instructores");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchInstructor = async (id) => {
+    try {
+      const response = await getInstructorById(id);
+      setInstructor(response.data);
+    } catch (error) {
+      toast.error("Error al cargar el instructor");
     }
   };
 
@@ -55,7 +65,9 @@ export const InstructoresProvider = ({ children }) => {
     <InstructoresContext.Provider 
       value={{ 
         instructores, 
+        instructor, 
         fetchInstructores, 
+        fetchInstructor, 
         addInstructor, 
         editInstructor, 
         removeInstructor, 
