@@ -5,12 +5,11 @@ import AddEditDialog from './AddEditDialogInstructores';
 import { InstructoresContext } from 'shared/context/InstructoresContext';
 
 const InstructoresTable = ({ instructores }) => {
-    const { addInstructor, editInstructor, fetchInstructor, instructor } = useContext(InstructoresContext);
+    const { addInstructor, editInstructor, fetchInstructor, removeInstructor, instructor } = useContext(InstructoresContext);
 
 
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
-    const [currentInstructor, setCurrentInstructor] = useState(null);
 
     const [selected, setSelected] = useState(null);
 
@@ -29,7 +28,6 @@ const InstructoresTable = ({ instructores }) => {
 
     const handleEdit = () => {
         fetchInstructor(selected.at(0))
-        setCurrentInstructor(instructor);
         setOpenEdit(true);
     };
 
@@ -50,10 +48,17 @@ const InstructoresTable = ({ instructores }) => {
         editInstructor(data);
     };
 
+    const handleKill = () => {
+        selected.forEach(id => removeInstructor(id));
+    };
+
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            {/* Botón Añadir */}
+            {/* Botones Borrar/Editar/Añadir */}
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
+                <Button disabled={!selected || selected.length == 0} variant="contained" color="primary" onClick={handleKill}>
+                    Eliminar
+                </Button>
                 <Button disabled={!selected || selected.length == 0 || selected.length > 1} variant="contained" color="primary" onClick={handleEdit}>
                     Editar Instructor
                 </Button>
