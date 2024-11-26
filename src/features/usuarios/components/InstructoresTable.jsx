@@ -62,7 +62,6 @@ const InstructoresTable = ({ instructores }) => {
                 </Button>
             </Stack>
 
-            {/* Tabla */}
             <TableComponent
                 columns={columns}
                 data={instructores}
@@ -71,7 +70,6 @@ const InstructoresTable = ({ instructores }) => {
                 setSelected={setSelected}
             />
 
-            {/* Diálogo Añadir */}
             <AddEditDialog
                 open={openAdd}
                 handleClose={handleCloseAdd}
@@ -79,7 +77,6 @@ const InstructoresTable = ({ instructores }) => {
                 title="Añadir Instructor"
             />
 
-            {/* Diálogo Editar */}
             <AddEditDialog
                 open={openEdit}
                 handleClose={handleCloseEdit}
