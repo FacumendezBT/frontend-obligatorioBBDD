@@ -64,6 +64,7 @@ export const ClasesProvider = ({ children }) => {
                 editClase,
                 removeClase,
                 loading,
+                setLoading
             }}
         >
             {children}

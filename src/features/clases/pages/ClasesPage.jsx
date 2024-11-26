@@ -7,19 +7,22 @@ import ActividadesTable from '../components/ActividadesTable';
 import { ClasesContext } from 'shared/context/ClasesContext';
 import { TurnosContext } from 'shared/context/TurnosContext';
 import { ActividadesContext } from 'shared/context/ActividadesContext';
+import { InstructoresContext } from '../../../shared/context/InstructoresContext';
 
 const ClasesPage = () => {
   const { clases, fetchClases, loading: loadingClases } = useContext(ClasesContext);
   const { turnos, fetchTurnos, loading: loadingTurnos } = useContext(TurnosContext);
+  const { fetchInstructores, loading: loadingInstructores } = useContext(InstructoresContext);
   const { actividades, fetchActividades, loading: loadingActividades } = useContext(ActividadesContext);
 
   useEffect(() => {
     fetchClases();
     fetchTurnos();
     fetchActividades();
+    fetchInstructores();
   }, []);
 
-  if (loadingClases || loadingTurnos || loadingActividades) {
+  if (loadingClases || loadingTurnos || loadingActividades || loadingInstructores) {
     return (
       <Container sx={{ textAlign: 'center', marginTop: 4 }}>
         <LinearProgress />
