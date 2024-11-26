@@ -68,9 +68,9 @@ const ClasesTable = ({ clases }) => {
                 arr.push(
                     {
                         id: clase.id,
-                        instructor: `${instructor.nombre} ${instructor.apellido}`,
+                        instructor: instructor === undefined ? "No hay instructor" : `${instructor.nombre} ${instructor.apellido}`,
                         actividad: actividad.descripcion,
-                        turno: `${turno.hora_inicio}-${turno.hora_fin}`,
+                        turno: turno === undefined ? "Sin turno" : `${turno.hora_inicio}-${turno.hora_fin}`,
                         dictada: clase.dictada ? "Sí" : "No",
                         fecha: clase.fecha
                     }

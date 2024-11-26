@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TableComponent from 'shared/components/TableComponent';
-import AddEditDialogTurnos from './AddEditDialogTurnos';
 import { Box, Button, Stack } from '@mui/material';
 import { TurnosContext } from 'shared/context/TurnosContext';
+import AddEditDialog from '../../usuarios/components/AddEditDialogTurnos';
 
 const TurnosTable = ({ turnos }) => {
     const { fetchTurnos, fetchTurno, addTurno, editTurno, removeTurno, turno } = useContext(TurnosContext);
@@ -44,9 +44,19 @@ const TurnosTable = ({ turnos }) => {
         editTurno(data);
     };
 
+    const handleKill = () => {
+        selected.forEach(id => removeTurno(id));
+    };
+
+    useEffect(() => {
+        console.log(turno)
+    }, [turno]);
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
+                <Button disabled={!selected || selected.length == 0} variant="contained" color="primary" onClick={handleKill}>
+                    Eliminar
+                </Button>
                 <Button disabled={!selected || selected.length == 0 || selected.length > 1} variant="contained" color="primary" onClick={handleEdit}>
                     Editar turno
                 </Button>
@@ -62,14 +72,14 @@ const TurnosTable = ({ turnos }) => {
                 setSelected={setSelected} 
             />
 
-            <AddEditDialogTurnos
+            <AddEditDialog
                 open={openAdd}
                 handleClose={handleCloseAdd}
                 handleSubmit={handleSubmitAdd}
                 title="Añadir turno"
             />
 
-            <AddEditDialogTurnos
+            <AddEditDialog
                 open={openEdit}
                 handleClose={handleCloseEdit}
                 handleSubmit={handleSubmitEdit}

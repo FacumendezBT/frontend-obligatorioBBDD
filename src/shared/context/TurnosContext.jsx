@@ -8,7 +8,7 @@ export const TurnosProvider = ({ children }) => {
     const [turnos, setTurnos] = useState([]);
     const [turno, setTurno] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { getTurnos, createTurno, updateTurno, deleteTurno } = useTurnosService();
+    const { getTurnos, getTurnoById, createTurno, updateTurno, deleteTurno } = useTurnosService();
     
     const fetchTurnos = async () => {
         setLoading(true);
@@ -29,7 +29,7 @@ export const TurnosProvider = ({ children }) => {
     const fetchTurno = async (id) => {
         try {
             const response = await getTurnoById(id);
-            console.log(response.data);
+            console.log("A",response.data);
             setTurno(response.data);
         } catch (error) {
             toast.error("Error al cargar el turno");
@@ -74,6 +74,7 @@ export const TurnosProvider = ({ children }) => {
         <TurnosContext.Provider
             value={{
                 turnos,
+                turno,
                 fetchTurno,
                 fetchTurnos,
                 addTurno,

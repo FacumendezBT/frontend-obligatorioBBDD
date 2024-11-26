@@ -5,9 +5,8 @@ import { Box, Button, Stack } from '@mui/material';
 import { ActividadesContext } from 'shared/context/ActividadesContext';
 
 const ActividadesTable = ({ actividades }) => {
-    const { fetchActividad, addActividad, editActividad, removeActividad, actividad } = useContext(ActividadesContext);
+    const { fetchActividad, editActividad, actividad } = useContext(ActividadesContext);
 
-    const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [selected, setSelected] = useState([]);
 
@@ -20,26 +19,13 @@ const ActividadesTable = ({ actividades }) => {
 
     const getRowId = (row) => row.id;
 
-    const handleAdd = () => {
-        setOpenAdd(true);
-    };
-
     const handleEdit = () => {
         fetchActividad(selected[0]);
         setOpenEdit(true);
     };
 
-    const handleCloseAdd = () => {
-        setOpenAdd(false);
-    };
-
     const handleCloseEdit = () => {
         setOpenEdit(false);
-    };
-
-    const handleSubmitAdd = (data) => {
-        addActividad(data);
-        setOpenAdd(false);
     };
 
     const handleSubmitEdit = (data) => {
@@ -47,50 +33,24 @@ const ActividadesTable = ({ actividades }) => {
         setOpenEdit(false);
     };
 
-    const handleKill = () => {
-        selected.forEach(id => removeActividad(id));
-    };
-
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
-                <Button 
-                    disabled={selected.length == 0} 
-                    variant="contained" 
-                    color="primary" 
-                    onClick={handleKill}
-                >
-                    Borrar
-                </Button>
-                <Button 
-                    disabled={selected.length !== 1} 
-                    variant="contained" 
-                    color="primary" 
+                <Button
+                    disabled={selected.length !== 1}
+                    variant="contained"
+                    color="primary"
                     onClick={handleEdit}
                 >
                     Editar Actividad
                 </Button>
-                <Button 
-                    variant="contained" 
-                    color="primary" 
-                    onClick={handleAdd}
-                >
-                    Añadir Actividad
-                </Button>
             </Stack>
-            <TableComponent 
-                columns={columns} 
-                data={actividades} 
-                getRowId={getRowId} 
+            <TableComponent
+                columns={columns}
+                data={actividades}
+                getRowId={getRowId}
                 selected={selected}
-                setSelected={setSelected} 
-            />
-
-            <AddEditDialog
-                open={openAdd}
-                handleClose={handleCloseAdd}
-                handleSubmit={handleSubmitAdd}
-                title="Añadir Actividad"
+                setSelected={setSelected}
             />
 
             <AddEditDialog

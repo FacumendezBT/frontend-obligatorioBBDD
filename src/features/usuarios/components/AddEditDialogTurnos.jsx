@@ -10,7 +10,7 @@ import {
     Grid,
 } from '@mui/material';
 
-const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, title }) => {
+const AddEditDialog = ({ open, handleClose, handleSubmit, initialData, title }) => {
     const [formData, setFormData] = useState(initialData || {});
 
     useEffect(() => {
@@ -23,6 +23,7 @@ const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, tit
             handleChangeNumber(name, value);
             return;
         }
+
         setFormData({ ...formData, [name]: value });
     };
 
@@ -47,7 +48,7 @@ const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, tit
                                 margin="dense"
                                 name={key}
                                 label={key.replace('_', ' ').toUpperCase()}
-                                type="text"
+                                type={key === "id" ? "number" : "time"}
                                 fullWidth
                                 variant="outlined"
                                 value={formData[key] || ''}
@@ -61,11 +62,11 @@ const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, tit
                                 <TextField
                                     margin="dense"
                                     name="hora_inicio"
-                                    label="Hora Inicio"
-                                    type="text"
+                                    label="Hora inicio"
+                                    type="time"
                                     fullWidth
                                     variant="outlined"
-                                    value={formData.fecha_inicio || ''}
+                                    value={formData.hora_inicio || ''}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -73,11 +74,11 @@ const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, tit
                                 <TextField
                                     margin="dense"
                                     name="hora_fin"
-                                    label="Hora Fin"
-                                    type="int"
+                                    label="Hora fin"
+                                    type="time"
                                     fullWidth
                                     variant="outlined"
-                                    value={formData.fecha_fin || ''}
+                                    value={formData.hora_fin || ''}
                                     onChange={handleChange}
                                 />
                             </Grid>
@@ -97,7 +98,7 @@ const AddEditDialogTurnos = ({ open, handleClose, handleSubmit, initialData, tit
     );
 };
 
-AddEditDialogTurnos.propTypes = {
+AddEditDialog.propTypes = {
     open: PropTypes.bool.isRequired,
     handleClose: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
@@ -105,4 +106,4 @@ AddEditDialogTurnos.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
-export default AddEditDialogTurnos;
+export default AddEditDialog;
