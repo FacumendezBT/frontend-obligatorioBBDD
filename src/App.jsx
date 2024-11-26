@@ -14,10 +14,13 @@ import WIPPage from 'shared/pages/WIPPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ActividadesProvider } from './shared/context/ActividadesContext';
 import { ClasesProvider } from './shared/context/ClasesContext';
+import EquipamientoPage from './features/equipamiento/pages/EquipmentPage';
+import { EquipamientoProvider } from './shared/context/EquipamientoContext';
 
 function App() {
   return (
     <AuthProvider>
+    <EquipamientoProvider>
       <InstructoresProvider>
         <AlumnosProvider>
           <UsuariosProvider>
@@ -33,6 +36,7 @@ function App() {
                         <Route element={<LayoutedRoute />}>
                           <Route path="/usuarios" element={<UsersPage />} />
                           <Route path="/clases" element={<ClasesPage />} />
+                          <Route path="/equipamiento" element={<EquipamientoPage />}/>
                         </Route>
                       </Route>
                       <Route path="*" element={<WIPPage />} />
@@ -44,6 +48,7 @@ function App() {
           </UsuariosProvider>
         </AlumnosProvider>
       </InstructoresProvider>
+      </EquipamientoProvider>
     </AuthProvider>
   );
 }
