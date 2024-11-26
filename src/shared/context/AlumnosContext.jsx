@@ -6,8 +6,9 @@ export const AlumnosContext = createContext();
 
 export const AlumnosProvider = ({ children }) => {
   const [alumnos, setAlumnos] = useState([]);
+  const [alumno, setAlumno] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { getAlumnos, createAlumno, updateAlumno, deleteAlumno, getClasesOfAlumno } = AlumnosService();
+  const { getAlumnos, createAlumno, updateAlumno, deleteAlumno, getClasesOfAlumno, getAlumnoById } = AlumnosService();
 
   const fetchAlumnos = async () => {
     setLoading(true);
@@ -18,6 +19,14 @@ export const AlumnosProvider = ({ children }) => {
       toast.error("Error al cargar los alumnos");
     } finally {
       setLoading(false);
+    }
+  };
+  const fetchAlumno = async (idAlumno) => {
+    try {
+      const response = await getAlumnoById(idAlumno);
+      setAlumno(response.data);
+    } catch (error) {
+      toast.error("Error al cargar  alumno");
     }
   };
 
@@ -65,7 +74,9 @@ export const AlumnosProvider = ({ children }) => {
     <AlumnosContext.Provider 
       value={{ 
         alumnos, 
-        fetchAlumnos, 
+        alumno,
+        fetchAlumnos,
+        fetchAlumno, 
         addAlumno, 
         editAlumno, 
         removeAlumno, 
