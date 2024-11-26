@@ -29,9 +29,9 @@ function NavBar() {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/horarios" className={navbarCSS.navItem + ' ' + isSelected('/horarios')}>
+                        <Link to="/turnos" className={navbarCSS.navItem + ' ' + isSelected('/turnos')}>
                             <FiClock size={22} />
-                            <span>Horarios</span>
+                            <span>Turnos</span>
                         </Link>
                     </li>
                     <li>
