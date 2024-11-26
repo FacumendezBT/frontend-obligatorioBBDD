@@ -46,7 +46,7 @@ const TurnosTable = ({ turnos }) => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
+            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
                 <Button disabled={!selected || selected.length == 0 || selected.length > 1} variant="contained" color="primary" onClick={handleEdit}>
                     Editar turno
                 </Button>

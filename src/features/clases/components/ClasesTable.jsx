@@ -85,11 +85,12 @@ const ClasesTable = ({ clases }) => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
-                <Button
-                    disabled={selected.length !== 1}
-                    variant="contained"
-                    color="primary"
+
+            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2} >
+                <Button 
+                    disabled={selected.length !== 1} 
+                    variant="contained" 
+                    color="primary" 
                     onClick={handleEdit}
                 >
                     Editar Clase

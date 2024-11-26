@@ -51,7 +51,7 @@ const UsuariosTable = ({ usuarios }) => {
     return (
         <Box maxWidth="xl" sx={{ marginTop: 0, px: 0 }}>
             {/* Botones Borrar/Editar/Añadir */}
-            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
+            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
                 <Button disabled={!selected || selected.length == 0} variant="contained" color="primary" onClick={handleKill}>
                     Eliminar
                 </Button>

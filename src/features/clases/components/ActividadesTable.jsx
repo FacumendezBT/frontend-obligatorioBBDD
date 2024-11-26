@@ -49,7 +49,7 @@ const ActividadesTable = ({ actividades }) => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
+            <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
                 <Button 
                     disabled={selected.length !== 1} 
                     variant="contained" 
