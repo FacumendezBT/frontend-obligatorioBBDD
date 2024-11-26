@@ -6,6 +6,7 @@ import { UsuariosProvider } from 'shared/context/UsuariosContext';
 import { TurnosProvider } from 'shared/context/TurnosContext';
 import LoginPage from 'features/auth/pages/LoginPage';
 import UsersPage from 'features/usuarios/pages/UsersPage';
+import ReportsPage from 'features/reports/pages/ReportsPage';
 import ClasesPage from 'features/clases/pages/ClasesPage';
 import PrivateRoute from 'shared/navigation/PrivateRoute';
 import UnAuthRoute from 'shared/navigation/UnAuthRoute';
@@ -16,6 +17,7 @@ import { ActividadesProvider } from './shared/context/ActividadesContext';
 import { ClasesProvider } from './shared/context/ClasesContext';
 import EquipamientoPage from './features/equipamiento/pages/EquipmentPage';
 import { EquipamientoProvider } from './shared/context/EquipamientoContext';
+import { ReportesProvider } from './shared/context/ReportesContext';
 
 function App() {
   return (
@@ -27,21 +29,24 @@ function App() {
             <TurnosProvider>
               <ActividadesProvider>
                 <ClasesProvider>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route element={<UnAuthRoute />}>
-                        <Route path="/login" element={<LoginPage />} />
-                      </Route>
-                      <Route element={<PrivateRoute />}>
-                        <Route element={<LayoutedRoute />}>
-                          <Route path="/usuarios" element={<UsersPage />} />
-                          <Route path="/clases" element={<ClasesPage />} />
-                          <Route path="/equipamiento" element={<EquipamientoPage />}/>
+                  <ReportesProvider>
+                    <BrowserRouter>
+                      <Routes>
+                        <Route element={<UnAuthRoute />}>
+                          <Route path="/login" element={<LoginPage />} />
                         </Route>
-                      </Route>
-                      <Route path="*" element={<WIPPage />} />
-                    </Routes>
-                  </BrowserRouter>
+                        <Route element={<PrivateRoute />}>
+                          <Route element={<LayoutedRoute />}>
+                            <Route path="/usuarios" element={<UsersPage />} />
+                            <Route path="/clases" element={<ClasesPage />} />
+                            <Route path="/reportes" element={<ReportsPage />} />
+                            <Route path="/equipamiento" element={<EquipamientoPage />}/>
+                          </Route>
+                        </Route>
+                        <Route path="*" element={<WIPPage />} />
+                      </Routes>
+                    </BrowserRouter>
+                  </ReportesProvider>
                 </ClasesProvider>
               </ActividadesProvider>
             </TurnosProvider>
