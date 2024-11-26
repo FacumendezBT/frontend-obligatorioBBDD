@@ -18,5 +18,4 @@ Con estar ubicado en la carpeta del proyecto es suficiente
 
 *Importante*
 
-El backend para esta aplicación se encuentra en un repositorio separado. Asegúrate de configurar correctamente las variables de entorno para consumir la API.
-
+El backend para esta aplicación se encuentra en un repositorio separado. 
