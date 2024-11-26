@@ -53,7 +53,6 @@ const InstructoresTable = ({ instructores }) => {
 
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            {/* Botones Borrar/Editar/Añadir */}
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }}>
                 <Button disabled={!selected || selected.length == 0} variant="contained" color="primary" onClick={handleKill}>
                     Eliminar

@@ -6,13 +6,14 @@ import { UsuariosProvider } from 'shared/context/UsuariosContext';
 import { TurnosProvider } from 'shared/context/TurnosContext';
 import LoginPage from 'features/auth/pages/LoginPage';
 import UsersPage from 'features/usuarios/pages/UsersPage';
-import TurnosPage from 'features/turnos/pages/TurnosPage';
+import ClasesPage from 'features/clases/pages/ClasesPage';
 import PrivateRoute from 'shared/navigation/PrivateRoute';
 import UnAuthRoute from 'shared/navigation/UnAuthRoute';
 import LayoutedRoute from 'shared/navigation/LayoutedRoute';
 import WIPPage from 'shared/pages/WIPPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ActividadesProvider } from './shared/context/ActividadesContext';
+import { ClasesProvider } from './shared/context/ClasesContext';
 
 function App() {
   return (
@@ -22,20 +23,22 @@ function App() {
           <UsuariosProvider>
             <TurnosProvider>
               <ActividadesProvider>
-                <BrowserRouter>
-                  <Routes>
-                    <Route element={<UnAuthRoute />}>
-                      <Route path="/login" element={<LoginPage />} />
-                    </Route>
-                    <Route element={<PrivateRoute />}>
-                      <Route element={<LayoutedRoute />}>
-                        <Route path="/usuarios" element={<UsersPage />} />
-                        <Route path="/turnos" element={<TurnosPage />} />
+                <ClasesProvider>
+                  <BrowserRouter>
+                    <Routes>
+                      <Route element={<UnAuthRoute />}>
+                        <Route path="/login" element={<LoginPage />} />
                       </Route>
-                    </Route>
-                    <Route path="*" element={<WIPPage />} />
-                  </Routes>
-                </BrowserRouter>
+                      <Route element={<PrivateRoute />}>
+                        <Route element={<LayoutedRoute />}>
+                          <Route path="/usuarios" element={<UsersPage />} />
+                          <Route path="/clases" element={<ClasesPage />} />
+                        </Route>
+                      </Route>
+                      <Route path="*" element={<WIPPage />} />
+                    </Routes>
+                  </BrowserRouter>
+                </ClasesProvider>
               </ActividadesProvider>
             </TurnosProvider>
           </UsuariosProvider>
