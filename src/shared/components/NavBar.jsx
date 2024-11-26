@@ -40,6 +40,12 @@ function NavBar() {
                             <span>Equipamiento</span>
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/reportes" className={navbarCSS.navItem + ' ' + isSelected('/reportes')}>
+                            <FiBookOpen size={22} />
+                            <span>Reportes</span>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
             <div className={navbarCSS.extras}>
