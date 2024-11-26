@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import TableComponent from 'shared/components/TableComponent';
-// import AddEditDialogActividad from './AddEditDialogActividad';
+import AddEditDialog from '../../usuarios/components/AddEditDialogActvidad';
 import { Box, Button, Stack } from '@mui/material';
 import { ActividadesContext } from 'shared/context/ActividadesContext';
 
 const ActividadesTable = ({ actividades }) => {
-    const { fetchActividades, fetchActividad, addActividad, editActividad, removeActividad, actividad } = useContext(ActividadesContext);
+    const { fetchActividad, addActividad, editActividad, removeActividad, actividad } = useContext(ActividadesContext);
 
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -47,9 +47,21 @@ const ActividadesTable = ({ actividades }) => {
         setOpenEdit(false);
     };
 
+    const handleKill = () => {
+        selected.forEach(id => removeActividad(id));
+    };
+
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
+                <Button 
+                    disabled={selected.length == 0} 
+                    variant="contained" 
+                    color="primary" 
+                    onClick={handleKill}
+                >
+                    Borrar
+                </Button>
                 <Button 
                     disabled={selected.length !== 1} 
                     variant="contained" 
@@ -74,20 +86,20 @@ const ActividadesTable = ({ actividades }) => {
                 setSelected={setSelected} 
             />
 
-            {/* <AddEditDialogActividad
+            <AddEditDialog
                 open={openAdd}
                 handleClose={handleCloseAdd}
                 handleSubmit={handleSubmitAdd}
                 title="Añadir Actividad"
             />
 
-            <AddEditDialogActividad
+            <AddEditDialog
                 open={openEdit}
                 handleClose={handleCloseEdit}
                 handleSubmit={handleSubmitEdit}
                 initialData={actividad}
                 title="Editar Actividad"
-            /> */}
+            />
         </Box>
     );
 };

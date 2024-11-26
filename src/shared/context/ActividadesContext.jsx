@@ -6,8 +6,9 @@ export const ActividadesContext = createContext();
 
 export const ActividadesProvider = ({ children }) => {
     const [actividades, setActividades] = useState([]);
+    const [actividad, setActividad] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { getActividades, createActividad, updateActividad, deleteActividad } = useActividadesService();
+    const { getActividades, createActividad, updateActividad, deleteActividad, getActividadById } = useActividadesService();
 
     const fetchActividades = async () => {
         setLoading(true);
@@ -18,6 +19,15 @@ export const ActividadesProvider = ({ children }) => {
             toast.error("Error al cargar las actividades");
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchActividad = async (id) => {
+        try {
+            const response = await getActividadById(id);
+            setActividad(response.data);
+        } catch (error) {
+            toast.error("Error al cargar las actividades");
         }
     };
 
@@ -59,7 +69,9 @@ export const ActividadesProvider = ({ children }) => {
         <ActividadesContext.Provider
             value={{
                 actividades,
+                actividad,
                 fetchActividades,
+                fetchActividad,
                 addActividad,
                 editActividad,
                 removeActividad,
