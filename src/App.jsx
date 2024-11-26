@@ -12,6 +12,7 @@ import UnAuthRoute from 'shared/navigation/UnAuthRoute';
 import LayoutedRoute from 'shared/navigation/LayoutedRoute';
 import WIPPage from 'shared/pages/WIPPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ActividadesProvider } from './shared/context/ActividadesContext';
 
 function App() {
   return (
@@ -20,20 +21,22 @@ function App() {
         <AlumnosProvider>
           <UsuariosProvider>
             <TurnosProvider>
-              <BrowserRouter>
-                <Routes>
-                  <Route element={<UnAuthRoute />}>
-                    <Route path="/login" element={<LoginPage />} />
-                  </Route>
-                  <Route element={<PrivateRoute />}>
-                    <Route element={<LayoutedRoute />}>
-                      <Route path="/usuarios" element={<UsersPage />} />
-                      <Route path="/turnos" element={<TurnosPage />} />
+              <ActividadesProvider>
+                <BrowserRouter>
+                  <Routes>
+                    <Route element={<UnAuthRoute />}>
+                      <Route path="/login" element={<LoginPage />} />
                     </Route>
-                  </Route>
-                  <Route path="*" element={<WIPPage />} />
-                </Routes>
-              </BrowserRouter>
+                    <Route element={<PrivateRoute />}>
+                      <Route element={<LayoutedRoute />}>
+                        <Route path="/usuarios" element={<UsersPage />} />
+                        <Route path="/turnos" element={<TurnosPage />} />
+                      </Route>
+                    </Route>
+                    <Route path="*" element={<WIPPage />} />
+                  </Routes>
+                </BrowserRouter>
+              </ActividadesProvider>
             </TurnosProvider>
           </UsuariosProvider>
         </AlumnosProvider>
