@@ -5,7 +5,7 @@ import AddEditDialogAlumnos from './AddEditDialogAlumnos';
 import { AlumnosContext } from 'shared/context/AlumnosContext';
 
 const AlumnosTable = ({ alumnos }) => {
-    const { addAlumno, editAlumno, fetchAlumno, alumno } = useContext(AlumnosContext);
+    const { addAlumno, editAlumno, fetchAlumno, alumno, removeAlumno } = useContext(AlumnosContext);
 
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
@@ -38,7 +38,6 @@ const AlumnosTable = ({ alumnos }) => {
 
   const handleCloseEdit = () => {
     setOpenEdit(false);
-    setCurrentAlumno(null);
   };
 
   const handleSubmitAdd = (data) => {
@@ -48,11 +47,16 @@ const AlumnosTable = ({ alumnos }) => {
   const handleSubmitEdit = (data) => {
     editAlumno(data);
   };
+  const handleKill = () => {
+    selected.forEach(id => removeAlumno(id));
+};
 
     return (
         <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-            {/* Botones de Añadir y Editar */}
             <Stack direction="row" justifyContent="flex-end" sx={{ mb: 2 }} spacing={2}>
+                <Button disabled={!selected || selected.length == 0} variant="contained" color="primary" onClick={handleKill}>
+                    Eliminar
+                </Button>
                 <Button 
                     disabled={!selected || selected.length === 0 || selected.length > 1} 
                     variant="contained" 
