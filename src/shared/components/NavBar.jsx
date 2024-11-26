@@ -49,10 +49,6 @@ function NavBar() {
                 </ul>
             </nav>
             <div className={navbarCSS.extras}>
-                <button className={navbarCSS.navItem}>
-                    <FiUser size={22} />
-                    <span>Perfil</span>
-                </button>
                 <button className={navbarCSS.navItem} onClick={_exitButton}>
                     <FiLogOut size={22} />
                     <span>Salir</span>

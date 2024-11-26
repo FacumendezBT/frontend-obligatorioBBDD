@@ -37,7 +37,6 @@ const InstructoresTable = ({ instructores }) => {
 
     const handleCloseEdit = () => {
         setOpenEdit(false);
-        setCurrentInstructor(null);
     };
 
     const handleSubmitAdd = (data) => {
