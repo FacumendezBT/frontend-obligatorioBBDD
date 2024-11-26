@@ -13,13 +13,13 @@ Estilos Modulares: Integración con Material-UI para estilos consistentes.
 
 *Instalar Dependencias*
 
-npm install
+```npm install```
 Si estás utilizando yarn como gestor de paquetes, puedes usar:
-yarn install
+```yarn install```
 
 *Ejecutar*
 
-npm run dev
+```npm run dev```
 Con estar ubicado en la carpeta del proyecto es suficiente
 
 *Importante*
